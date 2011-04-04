@@ -8,70 +8,70 @@ function void_menu_menu() {
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void1>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void2>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void3>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void4>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void5>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void6>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void7>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void8>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['<void9>'] = array(
     'page callback' => '_void_menu_menu',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-	'external' => TRUE,
+    'external' => TRUE,
   );
 
   $items['admin/config/system/void_menu'] = array(
@@ -94,14 +94,14 @@ function _void_menu_menu() {
  * Implementation of hook_menu_link_alter().
  */
 function void_menu_menu_link_alter(&$item, $menu) {
-    if ($item['link_path'] == '<void>' || $item['link_path'] == '<void1>' || $item['link_path'] == '<void2>' || $item['link_path'] == '<void3>' || $item['link_path'] == '<void>4' || $item['link_path'] == '<void5>' || $item['link_path'] == '<void6>' || $item['link_path'] == '<void7>' || $item['link_path'] == '<void8>' || $item['link_path'] == '<void9>') {
-      $item['options']['alter'] = TRUE;
-      $item['options']['unaltered_hidden'] = $item['hidden'];
-	  $item['options']['external'] = TRUE;
-    }
-    else {
-      unset($item['options']['unaltered_hidden']);
-    }
+  if ($item['link_path'] == '<void>' || $item['link_path'] == '<void1>' || $item['link_path'] == '<void2>' || $item['link_path'] == '<void3>' || $item['link_path'] == '<void>4' || $item['link_path'] == '<void5>' || $item['link_path'] == '<void6>' || $item['link_path'] == '<void7>' || $item['link_path'] == '<void8>' || $item['link_path'] == '<void9>') {
+    $item['options']['alter'] = TRUE;
+    $item['options']['unaltered_hidden'] = $item['hidden'];
+    $item['options']['external'] = TRUE;
+  }
+  else {
+    unset($item['options']['unaltered_hidden']);
+  }
 }
 
 /**
@@ -109,57 +109,67 @@ function void_menu_menu_link_alter(&$item, $menu) {
  */
 function void_menu_translated_menu_link_alter(&$item, $map) {
   if ($item['module'] == 'menu') {
-	if ($item['link_path'] == '<void>') {
-	  $href = variable_get('void_menu_link_value', 'javascript: void(0);');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void1>') {
-	  $href = variable_get('void_menu_link_value1', '#');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;	
-	} else if ($item['link_path'] == '<void2>') {
-	  $href = variable_get('void_menu_link_value2', '');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void3>') {
-	  $href = variable_get('void_menu_link_value3', '');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void4>') {
-	  $href = variable_get('void_menu_link_value4', '');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void5>') {
-	  $href = variable_get('void_menu_link_value5', '');
-	  $item['options']['alter'] = TRUE;
- 	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void6>') {
-	  $href = variable_get('void_menu_link_value6', '');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void7>') {
-	  $href = variable_get('void_menu_link_value7', '');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void8>') {
-	  $href = variable_get('void_menu_link_value8', '');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else if ($item['link_path'] == '<void9>') {
-	  $href = variable_get('void_menu_link_value9', '');
-	  $item['options']['alter'] = TRUE;
-	  $item['href'] = $href;
-	  $item['options']['external'] = TRUE;
-    } else {
+    if ($item['link_path'] == '<void>') {
+      $href = variable_get('void_menu_link_value', 'javascript: void(0);');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void1>') {
+      $href = variable_get('void_menu_link_value1', '#');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void2>') {
+      $href = variable_get('void_menu_link_value2', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void3>') {
+      $href = variable_get('void_menu_link_value3', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void4>') {
+      $href = variable_get('void_menu_link_value4', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void5>') {
+      $href = variable_get('void_menu_link_value5', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void6>') {
+      $href = variable_get('void_menu_link_value6', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void7>') {
+      $href = variable_get('void_menu_link_value7', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void8>') {
+      $href = variable_get('void_menu_link_value8', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    elseif ($item['link_path'] == '<void9>') {
+      $href = variable_get('void_menu_link_value9', '');
+      $item['options']['alter'] = TRUE;
+      $item['href'] = $href;
+      $item['options']['external'] = TRUE;
+    }
+    else {
       unset($item['options']['unaltered_hidden']);
     }
   }
@@ -258,7 +268,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void1>')) {
         $item = $value['#item'];
@@ -266,7 +276,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void2>')) {
         $item = $value['#item'];
@@ -274,7 +284,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void3>')) {
         $item = $value['#item'];
@@ -282,7 +292,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void4>')) {
         $item = $value['#item'];
@@ -290,7 +300,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void5>')) {
         $item = $value['#item'];
@@ -298,7 +308,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void6>')) {
         $item = $value['#item'];
@@ -306,7 +316,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void7>')) {
         $item = $value['#item'];
@@ -314,7 +324,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void8>')) {
         $item = $value['#item'];
@@ -322,7 +332,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
       }
       if (isset($value['#item']['href']) && ($value['#item']['href'] == '<void9>')) {
         $item = $value['#item'];
@@ -330,17 +340,15 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
         $form[$key]['hidden']['#default_value'] = !$unaltered_hidden;
         $form[$key]['#attributes']['class'] = $unaltered_hidden ? array('menu-disabled') : array('menu-enabled');
-        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' ('. t('disabled') .')' : '');
-      }	  
+        $form[$key]['title']['#markup'] = check_plain($item['title']) . ($unaltered_hidden ? ' (' . t('disabled') . ')' : '');
+      }
     }
   }
   elseif (($form_id == 'menu_edit_item') && isset($form['link_path']['#description'])) {
-	global $base_url;
+    global $base_url;
     $form['link_path']['#description'] .= '<br />***Enter <strong>&lt;void&gt;</strong> or <strong>&lt;void[1-9]&gt; to use your <a href="' . $base_url . '/admin/config/system/void_menu">Custom Links</a>***';
     if (isset($form['options']['#value']['unaltered_hidden'])) {
       $form['enabled']['#default_value'] = !$form['options']['#value']['unaltered_hidden'];
     }
   }
 }
-
-?>
