@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * @file
+ * Creates placeholders for menu items to use special paths, including but not limited to javascript function calls
+ * 
+ *  Written by William Hall - www.mrtheme.com
+ *  Based off of special_menu_items and parent_firstchild modules
+ */
+
+/**
  * Implementation of hook_menu().
  */
 function void_menu_menu() {
@@ -74,7 +82,7 @@ function void_menu_menu() {
     'external' => TRUE,
   );
 
-  $items['admin/config/system/void_menu'] = array(
+  $items['admin/config/user-interface/void_menu'] = array(
     'title' => 'Void Menu',
     'description' => 'Configure Void Menu.',
     'page callback' => 'drupal_get_form',
@@ -176,10 +184,10 @@ function void_menu_translated_menu_link_alter(&$item, $map) {
 }
 
 /**
- * Special Menu Items admin settings form.
+ * Void Menu admin settings form.
  *
  * @return
- * The settings form used by Special Menu Items.
+ * The settings form used by Void Menu.
  */
 function void_menu_admin_settings_form() {
 
@@ -346,7 +354,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
   }
   elseif (($form_id == 'menu_edit_item') && isset($form['link_path']['#description'])) {
     global $base_url;
-    $form['link_path']['#description'] .= '<br />***Enter <strong>&lt;void&gt;</strong> or <strong>&lt;void[1-9]&gt; to use your <a href="' . $base_url . '/admin/config/system/void_menu">Custom Links</a>***';
+    $form['link_path']['#description'] .= '<br />***Enter <strong>&lt;void&gt;</strong> or <strong>&lt;void[1-9]&gt; to use your <a href="' . $base_url . '/admin/config/user-interface/void_menu">Custom Links</a>***';
     if (isset($form['options']['#value']['unaltered_hidden'])) {
       $form['enabled']['#default_value'] = !$form['options']['#value']['unaltered_hidden'];
     }

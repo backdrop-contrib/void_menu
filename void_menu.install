@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file void_menu.install
+ * Contains uninstall for functions used by void_menu
+ */
+
+/**
  * Implementation of hook_uninstall().
  */
 function void_menu_uninstall() {
