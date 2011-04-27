@@ -23,7 +23,7 @@ function void_menu_menu() {
     'external' => TRUE,
   );
 
-/** 
+/**
  * Invoke our void items with the $base array.
  */
   $items['<void>'] = $base;
@@ -131,7 +131,7 @@ function void_menu_translated_menu_link_alter(&$item, $map) {
  * The settings form used by Void Menu.
  */
 function void_menu_admin_settings_form() {
-  
+
   $formbase = array(
     '#type' => 'textfield',
   );
@@ -157,17 +157,17 @@ function void_menu_admin_settings_form() {
     );
   $i++;
   }
-  
+
   return system_settings_form($form);
 }
 
 /**
  * Implements hook_form_alter().
-*/
+ */
 function void_menu_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'menu_overview_form') {
     foreach ($form as $key => $value) {
-      if (isset($value['#item']['href']) && (substr($value['#item']['href'], 0, 5) == '<void')) {
+      if (isset($value['#item']['href']) && (drupal_substr($value['#item']['href'], 0, 5) == '<void')) {
         $item = $value['#item'];
         $unaltered_hidden = $item['options']['unaltered_hidden'];
         $form[$key]['#item']['hidden'] = $unaltered_hidden;

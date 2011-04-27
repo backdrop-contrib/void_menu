@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file void_menu.install
+ * @file
  * Contains uninstall for functions used by void_menu
  */
 
 /**
- * Implementation of hook_uninstall().
+ * Implements of hook_uninstall().
  */
 function void_menu_uninstall() {
   variable_del('void_menu_link_value');
