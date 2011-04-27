@@ -1,7 +1,6 @@
 Void Menu Module
 ------------------------
-Written by William Hall - www.mrtheme.com
-Based off of the work done in special_menu_items and menu_firstchild
+Project page: http://drupal.org/sandbox/WillHall/1109702
 
 Description
 -----------
@@ -25,6 +24,13 @@ Upgrading
 ---------
 Just overwrite (or replace) the older void_menu folder with the newer version.
 
+Security
+--------
+This module allows users to enter javascript and hook it into the Drupal menu system. Any user with "Administer Site Configuration" will have access to this module, and many others that could prove harmful if a malicious user was given free reign over your web site. Always verify which users you are granting access to Administer your site.
+
 Contact
 -------
+Written by William Hall - www.mrtheme.com
+Based off of the work done in special_menu_items and menu_firstchild
+
 You may use the issue tracker on drupal.org at any time, this module will remain under active development. You may also emil me directly at will@mrtheme.com
