@@ -63,7 +63,8 @@ function _void_menu_menu() {
  * Implements hook_menu_link_alter().
  */
 function void_menu_menu_link_alter(&$item, $menu) {
-  if ($item['link_path'] == '<void>' || $item['link_path'] == '<void1>' || $item['link_path'] == '<void2>' || $item['link_path'] == '<void3>' || $item['link_path'] == '<void>4' || $item['link_path'] == '<void5>' || $item['link_path'] == '<void6>' || $item['link_path'] == '<void7>' || $item['link_path'] == '<void8>' || $item['link_path'] == '<void9>') {
+  //(/<void[0-9]>/g)
+  if(preg_match('/<void/', $item['link_path'])) {
     $item['options']['alter'] = TRUE;
     $item['options']['unaltered_hidden'] = $item['hidden'];
     $item['options']['external'] = TRUE;
@@ -88,32 +89,10 @@ function void_menu_translated_menu_link_alter(&$item, $map) {
     if ($item['link_path'] == '<void>') {
       $href = variable_get('void_menu_link_value', 'javascript: void(0);');
     }
-    elseif ($item['link_path'] == '<void1>') {
-      $href = variable_get('void_menu_link_value1', '#');
-    }
-    elseif ($item['link_path'] == '<void2>') {
-      $href = variable_get('void_menu_link_value2', '');
-    }
-    elseif ($item['link_path'] == '<void3>') {
-      $href = variable_get('void_menu_link_value3', '');
-    }
-    elseif ($item['link_path'] == '<void4>') {
-      $href = variable_get('void_menu_link_value4', '');
-    }
-    elseif ($item['link_path'] == '<void5>') {
-      $href = variable_get('void_menu_link_value5', '');
-    }
-    elseif ($item['link_path'] == '<void6>') {
-      $href = variable_get('void_menu_link_value6', '');
-    }
-    elseif ($item['link_path'] == '<void7>') {
-      $href = variable_get('void_menu_link_value7', '');
-    }
-    elseif ($item['link_path'] == '<void8>') {
-      $href = variable_get('void_menu_link_value8', '');
-    }
-    elseif ($item['link_path'] == '<void9>') {
-      $href = variable_get('void_menu_link_value9', '');
+    elseif (preg_match('/<void/', $item['link_path'])) {
+      if(preg_match('/d{1}/', $item['link_path'], $match)) {
+        $href = variable_get('void_menu_link_value' . $match, $match == 1 ? '#' : '');
+      }
     }
     else {
       unset($item['options']['unaltered_hidden']);
@@ -142,18 +121,12 @@ function void_menu_admin_settings_form() {
     '#default_value' => variable_get('void_menu_link_value', 'javascript: void(0);'),
   );
 
-  $form['void_menu_link_value1'] = $formbase + array(
-    '#title' => check_plain('HTML value for <void1>'),
-    '#description' => check_plain('You can use this field to customize the value of the <void1> tag, defaults to #'),
-    '#default_value' => variable_get('void_menu_link_value1', '#'),
-  );
-
-  $i = 2;
+  $i = 1;
   while ($i < 10) {
     $form['void_menu_link_value' . $i] = $formbase + array(
       '#title' => check_plain('HTML value for <void' . $i . '>'),
       '#description' => check_plain('You can use this field to customize the value of the <void' . $i . '> tag', array('!item' => $i)),
-      '#default_value' => variable_get('void_menu_link_value' . $i, ''),
+      '#default_value' => variable_get('void_menu_link_value' . $i, $i == 1 ? '#' : ''),
     );
   $i++;
   }
