@@ -27,15 +27,10 @@ function void_menu_menu() {
  * Invoke our void items with the $base array.
  */
   $items['<void>'] = $base;
-  $items['<void1>'] = $base;
-  $items['<void2>'] = $base;
-  $items['<void3>'] = $base;
-  $items['<void4>'] = $base;
-  $items['<void5>'] = $base;
-  $items['<void6>'] = $base;
-  $items['<void7>'] = $base;
-  $items['<void8>'] = $base;
-  $items['<void9>'] = $base;
+  $i = 1;
+  while ($i < 10) {
+    $items['<void' . $i . '>'] = $base;
+  }
 
 /**
  * Calling our Admin Menu item.
@@ -64,7 +59,7 @@ function _void_menu_menu() {
  */
 function void_menu_menu_link_alter(&$item, $menu) {
   //(/<void[0-9]>/g)
-  if(preg_match('/<void/', $item['link_path'])) {
+  if(preg_match('/(<void)/is', $item['link_path'])) {
     $item['options']['alter'] = TRUE;
     $item['options']['unaltered_hidden'] = $item['hidden'];
     $item['options']['external'] = TRUE;
@@ -86,12 +81,13 @@ function void_menu_translated_menu_link_alter(&$item, $map) {
 /**
  * Sets variable matching for menu items.
  */
-    if ($item['link_path'] == '<void>') {
-      $href = variable_get('void_menu_link_value', 'javascript: void(0);');
-    }
-    elseif (preg_match('/<void/', $item['link_path'])) {
-      if(preg_match('/d{1}/', $item['link_path'], $match)) {
-        $href = variable_get('void_menu_link_value' . $match, $match == 1 ? '#' : '');
+    if (preg_match('/(<void)/is', $item['link_path'])) {
+      if($item['link_path'] == '<void>') {
+        $href = variable_get('void_menu_link_value', 'javascript: void(0);');
+      } else {
+        if (preg_match('/.*?(\\d+)/is', $item['link_path'], $i)) {
+          $href = variable_get('void_menu_link_value' . $i[1], $i[1] == 1 ? '#' : '');
+        }
       }
     }
     else {
