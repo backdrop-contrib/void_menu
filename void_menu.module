@@ -27,10 +27,15 @@ function void_menu_menu() {
  * Invoke our void items with the $base array.
  */
   $items['<void>'] = $base;
-  $i = 1;
-  while ($i < 10) {
-    $items['<void' . $i . '>'] = $base;
-  }
+  $items['<void1>'] = $base;
+  $items['<void2>'] = $base;
+  $items['<void3>'] = $base;
+  $items['<void4>'] = $base;
+  $items['<void5>'] = $base;
+  $items['<void6>'] = $base;
+  $items['<void7>'] = $base;
+  $items['<void8>'] = $base;
+  $items['<void9>'] = $base;
 
 /**
  * Calling our Admin Menu item.
