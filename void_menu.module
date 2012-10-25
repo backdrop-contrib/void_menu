@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Creates placeholders for menu items to use special paths, including but not limited to javascript function calls.
@@ -7,7 +6,7 @@
  * Written by William Hall - www.mrtheme.com
  * Based off of special_menu_items and parent_firstchild modules.
  */
-
+  
 /**
  * Implements hook_menu().
  */
@@ -27,16 +26,12 @@ function void_menu_menu() {
  * Invoke our void items with the $base array.
  */
   $items['<void>'] = $base;
-  $items['<void1>'] = $base;
-  $items['<void2>'] = $base;
-  $items['<void3>'] = $base;
-  $items['<void4>'] = $base;
-  $items['<void5>'] = $base;
-  $items['<void6>'] = $base;
-  $items['<void7>'] = $base;
-  $items['<void8>'] = $base;
-  $items['<void9>'] = $base;
-
+  $i = 1;
+  while ($i < 10) {  
+    $items['<void' . $i . '>'] = $base;
+    $i++;
+  }
+ 
 /**
  * Calling our Admin Menu item.
  */
@@ -80,13 +75,14 @@ function void_menu_menu_link_alter(&$item, $menu) {
 function void_menu_translated_menu_link_alter(&$item, $map) {
   if ($item['module'] == 'menu') {
     $href = $item['href'];
-    $item['options']['alter'] = TRUE;
-    $item['options']['external'] = TRUE;
 
 /**
  * Sets variable matching for menu items.
  */
     if (preg_match('/(<void)/is', $item['link_path'])) {
+      $item['options']['alter'] = TRUE;
+      $item['options']['external'] = TRUE;
+
       if($item['link_path'] == '<void>') {
         $href = variable_get('void_menu_link_value', 'javascript: void(0);');
       } else {
@@ -100,8 +96,8 @@ function void_menu_translated_menu_link_alter(&$item, $map) {
     }
 
     $item['href'] = $href;
-
   }
+
 }
 
 /**
@@ -157,5 +153,26 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
     if (isset($form['options']['#value']['unaltered_hidden'])) {
       $form['enabled']['#default_value'] = !$form['options']['#value']['unaltered_hidden'];
     }
+  }
+}
+
+function void_menu_url_outbound_alter(&$path, &$options, $original_path) {
+  $items = array();
+  $items[0] = variable_get('void_menu_link_value');
+  if($items[0] == $original_path) {
+    $path = $original_path;
+    $options['alias'] = $path;
+    $options['external'] = TRUE;
+  }
+
+  $i = 1;
+  while($i < 10) {
+    $items[$i] = variable_get('void_menu_link_value' . $i);
+    if($items[$i] == $original_path) {
+      $path = $original_path;
+      $options['alias'] = $path;
+      $options['external'] = TRUE;
+    }
+    $i++;
   }
 }
