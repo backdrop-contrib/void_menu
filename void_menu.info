@@ -1,7 +1,7 @@
 name = Void Menu
 description = Provides a series of new menu items that will accept any custom values.
 package = Menu
-core = "8.x"
+core = "7.x"
 dependencies[] = menu
 files[] = void_menu.module
 files[] = void_menu.install
