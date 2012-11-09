@@ -159,19 +159,21 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
 function void_menu_url_outbound_alter(&$path, &$options, $original_path) {
   $items = array();
   $items[0] = variable_get('void_menu_link_value');
-  if($items[0] == $original_path) {
+  if($items[0] === $original_path) {
     $path = $original_path;
     $options['alias'] = $path;
     $options['external'] = TRUE;
+    return;
   }
 
   $i = 1;
   while($i < 10) {
     $items[$i] = variable_get('void_menu_link_value' . $i);
-    if($items[$i] == $original_path) {
+    if($items[$i] === $original_path) {
       $path = $original_path;
       $options['alias'] = $path;
       $options['external'] = TRUE;
+      break;
     }
     $i++;
   }
