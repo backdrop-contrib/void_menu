@@ -157,6 +157,9 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
 }
 
 function void_menu_url_outbound_alter(&$path, &$options, $original_path) {
+  if($original_path === '' || $original_path === null || $original_path === '<front>') {
+    return;
+  }  
   $items = array();
   $items[0] = variable_get('void_menu_link_value');
   if($items[0] === $original_path) {
