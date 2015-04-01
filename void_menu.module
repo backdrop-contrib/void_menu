@@ -6,6 +6,17 @@
  * Written by William Hall - www.mrtheme.com
  * Based off of special_menu_items and parent_firstchild modules.
  */
+
+/**
+ * Implements hook_config_info().
+ */
+function void_menu_config_info() {
+  $prefixes['void_menu.settings'] = array(
+    'label' => t('void_menu settings'),
+    'group' => t('void_menu'),
+  );
+  return $prefixes;
+} 
   
 /**
  * Implements hook_menu().
@@ -38,7 +49,7 @@ function void_menu_menu() {
   $items['admin/config/user-interface/void_menu'] = array(
     'title' => 'Void Menu',
     'description' => 'Configure Void Menu.',
-    'page callback' => 'drupal_get_form',
+    'page callback' => 'backdrop_get_form',
     'page arguments' => array('void_menu_admin_settings_form'),
     'access arguments' => array('administer site configuration'),
     'type' => MENU_NORMAL_ITEM,
@@ -48,10 +59,10 @@ function void_menu_menu() {
 }
 
 /**
- * Empty callback ensures Drupal menu system accepts Void placeholders.
+ * Empty callback ensures Backdrop menu system accepts Void placeholders.
  */
 function _void_menu_menu() {
-  return drupal_not_found();
+  return backdrop_not_found();
 }
 
 /**
@@ -85,10 +96,10 @@ function void_menu_translated_menu_link_alter(&$item, $map) {
       $item['options']['external'] = TRUE;
 
       if($item['link_path'] == '<void>') {
-        $href = variable_get('void_menu_link_value', 'javascript: void(0);');
+        $href = config_get('void_menu.settings', 'void_menu_link_value');
       } else {
         if (preg_match('/.*?(\\d+)/is', $item['link_path'], $i)) {
-          $href = variable_get('void_menu_link_value' . $i[1], $i[1] == 1 ? '#' : '');
+          $href = config_get('void_menu.settings', 'void_menu_link_value' . $i[1]);
         }
       }
     }
@@ -117,7 +128,7 @@ function void_menu_admin_settings_form() {
   $form['void_menu_link_value'] = $formbase + array(
     '#title' => check_plain('HTML value for <void>'),
     '#description' => check_plain('You can use this field to customize the value of the <void> tag, defaults to javascript: void(0);'),
-    '#default_value' => variable_get('void_menu_link_value', 'javascript: void(0);'),
+    '#default_value' => config_get('void_menu.settings', 'void_menu_link_value'),
   );
 
   $i = 1;
@@ -125,13 +136,38 @@ function void_menu_admin_settings_form() {
     $form['void_menu_link_value' . $i] = $formbase + array(
       '#title' => check_plain('HTML value for <void' . $i . '>'),
       '#description' => check_plain('You can use this field to customize the value of the <void' . $i . '> tag', array('!item' => $i)),
-      '#default_value' => variable_get('void_menu_link_value' . $i, $i == 1 ? '#' : ''),
+      '#default_value' => config_get('void_menu.settings', 'void_menu_link_value' . $i),
     );
   $i++;
   }
 
-  return system_settings_form($form);
+$form['#submit'][] = 'void_menu_admin_settings_submit';
+  // Add a submit button
+  $form['actions']['#type'] = 'actions';
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save configuration'),
+  );
+  // Return the form!
+  return $form;
 }
+
+
+/**
+ * Form submission handler for void_menu_admin_settings().
+ */
+function void_menu_admin_settings_submit($form, &$form_state) {
+$config = config('void_menu.settings');
+foreach ($form_state['values'] as $key => $value)
+{
+$config->set($key, $value);
+}
+
+$config->save();
+backdrop_set_message(t('The configuration options have been saved.'));
+}
+
+
 
 /**
  * Implements hook_form_alter().
@@ -139,7 +175,7 @@ function void_menu_admin_settings_form() {
 function void_menu_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'menu_overview_form') {
     foreach ($form as $key => $value) {
-      if (isset($value['#item']['href']) && (drupal_substr($value['#item']['href'], 0, 5) == '<void')) {
+      if (isset($value['#item']['href']) && (backdrop_substr($value['#item']['href'], 0, 5) == '<void')) {
         $item = $value['#item'];
         $unaltered_hidden = $item['options']['unaltered_hidden'];
         $form[$key]['#item']['hidden'] = $unaltered_hidden;
@@ -163,7 +199,7 @@ function void_menu_url_outbound_alter(&$path, &$options, $original_path) {
     return;
   }  
   $items = array();
-  $items[0] = variable_get('void_menu_link_value');
+  $items[0] = config_get('void_menu.settings', 'void_menu_link_value');
   if($items[0] === $original_path) {
     $path = $original_path;
     $options['alias'] = $path;
@@ -173,7 +209,7 @@ function void_menu_url_outbound_alter(&$path, &$options, $original_path) {
 
   $i = 1;
   while($i < 10) {
-    $items[$i] = variable_get('void_menu_link_value' . $i);
+    $items[$i] = config_get('void_menu.settings', 'void_menu_link_value' . $i);
     if($items[$i] === $original_path) {
       $path = $original_path;
       $options['alias'] = $path;
