@@ -4,6 +4,5 @@ package = Menu
 version = BACKDROP_VERSION
 backdrop = 1.x
 dependencies[] = menu
-files[] = void_menu.module
-files[] = void_menu.install
+type = module
 configure = admin/config/user-interface/void_menu

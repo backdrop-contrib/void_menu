@@ -1,15 +1,20 @@
 VOID MENU
-===========
+===================
 
 CONTENTS OF THIS FILE
 ---------------------
 
  - Introduction
+ - Tested
+ - Known Issues
+ - Special Thanks
  - Requirements
  - Installation
- - Permissions
+ - Coming From Drupal?
  - Usage
- - Sponsors
+ - License
+ - Credits
+ - Maintainers
 
 INTRODUCTION
 ------------
@@ -30,38 +35,43 @@ There's more
 
 As an added bonus, and because of the functionality of this module, you are also able to use actual anchors as menu items that serve no other purpose than placeholders. This is accomplished with a void tag that is set to javascript: void(0); or even a simple hash tag #. The benefit to using this module over special_menu_items for this is that your menus will not require any additional styling to account for the added span tags used by special_menu_items, and will be W3C valid because every anchor must have an href attribute.
 
+TESTED
+-----
+
+This module has been manually tested successfully creating several working menu items in Backdrop.
+
+KNOWN ISSUES
+---------------------
+
+Security
+--------
+This module allows users to enter Javascript and hook it into the Drupal menu system. Any user with "Administer Site Configuration" will have access to this module, and many others that could prove harmful if a malicious user was given free reign over your web site. Always verify which users you are granting access to Administer your site.
+
+SPECIAL THANKS
+--------------
+
 Written by William Hall - www.mrtheme.com
 Based off of the work done in special_menu_items and menu_firstchild
 
 You may also email me directly at will@mrtheme.com
 
-TESTED
------
-
-@todo
-This module has been manually tested successfully creating several working menu items in Backdrop.
-
-KNOWN ISSUES
----------------------
-@todo
-
-Security
---------
-This module allows users to enter javascript and hook it into the Drupal menu system. Any user with "Administer Site Configuration" will have access to this module, and many others that could prove harmful if a malicious user was given free reign over your web site. Always verify which users you are granting access to Administer your site.
-
 REQUIREMENTS
 ------------
 
-@todo
-
-This module depends on Menu module.
+none
 
 INSTALLATION
 ------------
 
-@todo
+Install this module using the official Backdrop CMS instructions at https://backdropcms.org/guide/modules
+
 Configure the module settings at Administer -> Configuration -> User Interface -> Void Menu (admin/config/user-interface/void_menu).
 
+
+COMING FROM DRUPAL?
+-------------------
+
+Nothing substantially different.
 
 PERMISSIONS
 ------------
@@ -71,24 +81,26 @@ PERMISSIONS
 
 USAGE
 -----
-@todo
 
 
-License
+
+LICENSE
 -------
 
-This project is GPL v2 software. See the LICENSE.txt file in this directory for
-complete text.
+This project is GPL v2 software. See the LICENSE.txt file in this directory for complete text.
 
-Maintainers
+CREDITS
+-----------
+
+This module is based on the Project module for Drupal, originally written and maintained by a large number of contributors, including:
+
+- Jibus <https://www.drupal.org/u/jibus>
+- WillHall <https://www.drupal.org/u/willhall>
+
+MAINTAINERS
 -----------
 
 - seeking
-
-Current Maintainers on Drupal:
-
-Jibus <https://www.drupal.org/u/jibus>
-WillHall <https://www.drupal.org/u/willhall>
 
 Ported to Backdrop by:
 
