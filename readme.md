@@ -58,7 +58,12 @@ You may also email me directly at will@mrtheme.com
 REQUIREMENTS
 ------------
 
-none
+A "parallax scrolling" looking website often has to use these four modules together:
+
+- parallax_bg
+- scrollreveal
+- void_menu
+- back_to_top
 
 INSTALLATION
 ------------
@@ -81,7 +86,6 @@ PERMISSIONS
 
 USAGE
 -----
-
 
 
 LICENSE
