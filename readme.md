@@ -1,24 +1,6 @@
 VOID MENU
 ===================
 
-CONTENTS OF THIS FILE
----------------------
-
- - Introduction
- - Tested
- - Known Issues
- - Special Thanks
- - Requirements
- - Installation
- - Coming From Drupal?
- - Usage
- - License
- - Credits
- - Maintainers
-
-INTRODUCTION
-------------
-
 Void Menu creates valid link item placeholders for use in the Backdrop menu system. This module allows you to use items in your links that would previously be rejected by Backdrop.
 
 You may have seen this technique in the "single page" websites that are often step based marketing pages for an event, company services or a new product.
@@ -34,6 +16,21 @@ Let's say you have created a custom JavaScript function that will set or check a
 There's more
 
 As an added bonus, and because of the functionality of this module, you are also able to use actual anchors as menu items that serve no other purpose than placeholders. This is accomplished with a void tag that is set to javascript: void(0); or even a simple hash tag #. The benefit to using this module over special_menu_items for this is that your menus will not require any additional styling to account for the added span tags used by special_menu_items, and will be W3C valid because every anchor must have an href attribute.
+
+CONTENTS OF THIS FILE
+---------------------
+
+ - Introduction
+ - Tested
+ - Known Issues
+ - Special Thanks
+ - Requirements
+ - Installation
+ - Coming From Drupal?
+ - Usage
+ - License
+ - Credits
+ - Maintainers
 
 TESTED
 -----
